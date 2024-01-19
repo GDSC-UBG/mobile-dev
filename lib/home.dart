@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
 
@@ -21,19 +22,37 @@ class _HomeState extends State<Home> {
             children: [
               Container(
                 width: double.infinity,
-                height: 200,
+                height: 150,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Color(0xff6495ed),
+                  borderRadius: BorderRadius.circular(5),
+                  // color: Colors.black,
+                  image: DecorationImage(
+                      image: AssetImage("assets/image/banner3.png"),
+                      fit: BoxFit.fitWidth),
                 ),
-                child: Center(
-                  child: Text(
-                    "Welcome to YESMOM",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20),
-                  ),
+              ),
+              SizedBox(height: 10),
+              Container(
+                width: double.infinity,
+                height: 150,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  // color: Colors.black,
+                  image: DecorationImage(
+                      image: AssetImage("assets/image/banner1.png"),
+                      fit: BoxFit.fitWidth),
+                ),
+              ),
+              SizedBox(height: 10),
+              Container(
+                width: double.infinity,
+                height: 150,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  // color: Colors.black,
+                  image: DecorationImage(
+                      image: AssetImage("assets/image/banner2.png"),
+                      fit: BoxFit.fitWidth),
                 ),
               ),
               SizedBox(height: 16),
@@ -86,87 +105,105 @@ class _HomeState extends State<Home> {
               ),
               SizedBox(height: 16),
               Container(
-                child: Column(
+                decoration: BoxDecoration(
+                    border: Border.all(color: Colors.grey),
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20),
+                    )),
+                width: double.infinity,
+                padding: EdgeInsets.all(12),
+                child: Row(
                   children: [
-                    Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey),
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(20),
-                            topRight: Radius.circular(20),
-                          )),
-                      width: double.infinity,
-                      padding: EdgeInsets.all(12),
-                      child: Row(
-                        children: [
-                          Row(
-                            children: [
-                              Container(
-                                width: 50,
-                                height: 50,
-                                decoration: BoxDecoration(
-                                    color: Colors.black,
-                                    shape: BoxShape.circle),
-                              ),
-                              SizedBox(width: 8),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Header",
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                  SizedBox(height: 4),
-                                  Text("Subhead"),
-                                ],
-                              ),
-                            ],
+                    Row(
+                      children: [
+                        Container(
+                          width: 50,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image:
+                                    AssetImage("assets/image/membosankan.png"),
+                                fit: BoxFit.cover),
+                            border: Border.all(color: Colors.red, width: 3),
+                            shape: BoxShape.circle,
                           ),
-                        ],
-                      ),
+                        ),
+                        SizedBox(width: 8),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Osi",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(height: 4),
+                            Text("1 hours ago"),
+                          ],
+                        ),
+                      ],
                     ),
-                    Container(
-                      width: double.infinity,
-                      height: 300,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          border: Border(
-                              left: BorderSide(color: Colors.grey),
-                              right: BorderSide(color: Colors.grey))),
-                    ),
-                    Container(
-                      width: double.infinity,
-                      padding: EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey),
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(10),
-                            bottomRight: Radius.circular(10),
-                          )),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("Title"),
-                          SizedBox(height: 10),
-                          Text("Subhead"),
-                          SizedBox(height: 20),
-                          ReadMoreText(
-                            "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                            trimLines: 3,
-                            colorClickableText: Colors.pink,
-                            trimMode: TrimMode.Line,
-                            trimCollapsedText: 'Show more',
-                            trimExpandedText: '....Show less',
-                            moreStyle: TextStyle(fontWeight: FontWeight.bold),
-                            lessStyle: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                    )
                   ],
                 ),
               ),
+              Container(
+                width: double.infinity,
+                height: 300,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    image: DecorationImage(
+                        image: AssetImage("assets/image/feeds.png"),
+                        fit: BoxFit.cover),
+                    border: Border(
+                        left: BorderSide(color: Colors.grey),
+                        right: BorderSide(color: Colors.grey))),
+              ),
+              Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                    border: Border.all(color: Colors.grey),
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(10),
+                      bottomRight: Radius.circular(10),
+                    )),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        IconButton(
+                            onPressed: () {},
+                            icon: Icon(
+                              Icons.favorite,
+                              color: Colors.red,
+                              size: 32,
+                            )),
+                        IconButton(
+                            onPressed: () {},
+                            icon: Icon(
+                              CupertinoIcons.conversation_bubble,
+                              size: 32,
+                            ))
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          left: 12, right: 12, bottom: 12),
+                      child: ReadMoreText(
+                        "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                        trimLines: 3,
+                        colorClickableText: Colors.pink,
+                        trimMode: TrimMode.Line,
+                        trimCollapsedText: 'Show more',
+                        trimExpandedText: '....Show less',
+                        moreStyle: TextStyle(color: Colors.blue),
+                        lessStyle: TextStyle(color: Colors.blue),
+                      ),
+                    ),
+                  ],
+                ),
+              )
             ],
           ),
         ),

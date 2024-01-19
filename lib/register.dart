@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:lomba/login.dart';
+import 'package:lomba/modules/user.dart';
+import 'package:lomba/snackbar.dart';
 import 'package:lottie/lottie.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -12,6 +16,45 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
+      final TextEditingController usernameController = TextEditingController();
+    final TextEditingController emailController = TextEditingController();
+    final TextEditingController passwordController = TextEditingController();
+    void checkRegister() {
+    if (usernameController.text.isEmpty || emailController.text.isEmpty || passwordController.text.isEmpty) {
+      ShowSnackBar('Error', 'All fields are required', 'error');
+    } else {
+      Get.showOverlay(
+          asyncFunction: () =>
+              register2(usernameController.text, emailController.text, passwordController.text),
+          loadingWidget: CircularProgressIndicator(color: Colors.grey));
+    }
+  }
+
+  Future<void> register2(String username, String email, String password) async {
+    User user = User(
+      username: username, email: email, password: password);
+    try {
+      var response =
+          await http.post(Uri.parse('http://34.122.221.140/api/v1/register'), body: user.toJson());
+      print('Response Status Code: ${response.statusCode}');
+      print('Response Body: ${response.body}');
+      if (response.statusCode == 200) {
+        var res = jsonDecode(response.body);
+        print(res['result']);
+        ShowSnackBar('success', 'Akun Sudah Ditambahkan', 'success');
+        Get.offAll(() => Login());
+
+        
+      } else {
+        print('Gagal mendaftar: ${response.reasonPhrase}');
+        ShowSnackBar(
+            'error', 'Gagal mendaftar: ${response.reasonPhrase}', 'error');
+      }
+    } catch (e) {
+      print('Ada error di $e');
+      ShowSnackBar('error', 'Terjadi kesalahan: $e', 'error');
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +70,7 @@ class _RegisterState extends State<Register> {
               children: [
                 Lottie.asset('assets/signup.json'),
                 TextField(
-                  // controller: authController.nameController,
+                  controller: usernameController,
                   decoration: InputDecoration(
                     label: Container(
                       margin: const EdgeInsets.only(left: 20),
@@ -38,8 +81,8 @@ class _RegisterState extends State<Register> {
                   ),
                 ),
                 const SizedBox(height: 15),
-                TextField(
-                  // controller: authController.emailController,
+                TextField(controller: emailController,
+                  
                   decoration: InputDecoration(
                     label: Container(
                       margin: const EdgeInsets.only(left: 20),
@@ -51,7 +94,7 @@ class _RegisterState extends State<Register> {
                 ),
                 const SizedBox(height: 15),
                 TextField(
-                  // controller: authController.passwordController,
+                  controller: passwordController,
                   decoration: InputDecoration(
                     label: Container(
                       margin: const EdgeInsets.only(left: 20),
@@ -65,7 +108,7 @@ class _RegisterState extends State<Register> {
                 const SizedBox(height: 15),
                 InkWell(
                   onTap: () {
-                    // register();
+                    checkRegister();
                   },
                   child: Container(
                     padding: const EdgeInsets.all(15),
